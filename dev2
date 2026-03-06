@@ -1,0 +1,30 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+    variant: ""
+
+  timezone: America/Chicago
+
+  identity:
+    realname: Dev01
+    hostname: ubuntu-dev-01
+    username: techuser
+    password: "$6$S.1Jv.Sy49a9JzkY$MN0h5y4/rG358/AYLJeK6hh8OpnR8hOBQBMZqMS/8t5kI5GcnBlOEb6fBSyLbXAmurKEmQstvUK2Om0m7Cyii0"
+
+  storage:
+    layout:
+      name: direct
+
+  ssh:
+    install-server: true
+    allow-pw: true
+
+  packages:
+    - qemu-guest-agent
+
+  late-commands:
+    - curtin in-target -- systemctl enable qemu-guest-agent
